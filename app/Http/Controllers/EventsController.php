@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
@@ -13,8 +14,9 @@ class EventsController extends Controller
      */
     public function index()
     {
-        //
-        dd('Display All Events');
+        $events = Event::all();
+
+        return view('events.index')->withEvents($events);
     }
 
     /**
@@ -25,7 +27,7 @@ class EventsController extends Controller
     public function create()
     {
         //
-        dd('Show the form for creating a resource');
+        return view('events.create');
     }
 
     /**
@@ -36,7 +38,16 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:3',
+            'description' => 'required|min:5'
+        ]);
+
+        Event::create([
+            'title' => $request->title,
+            'description' => $request->description]);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -47,7 +58,9 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::findOrFail($id);
+
+        return view('events.show')->withEvent($event);
     }
 
     /**
@@ -59,6 +72,8 @@ class EventsController extends Controller
     public function edit($id)
     {
         //
+        $event = Event::findOrFail($id);
+        return view('events.edit')->withEvent($event);
     }
 
     /**
@@ -71,6 +86,16 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, ['title' => 'required|min:3', 'description' => 'required|min:5']);
+
+        $event = Event::findOrFail($id);
+
+        $event->update([
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('events.show', $id);
     }
 
     /**
@@ -82,5 +107,8 @@ class EventsController extends Controller
     public function destroy($id)
     {
         //
+        Event::destroy($id);
+
+        return redirect()->route('home');
     }
 }

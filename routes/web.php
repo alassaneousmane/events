@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', 'PagesController@home')->name('home');
+Route::get('/', 'EventsController@index')->name('home');
 
 Route::resource('events', 'EventsController');
