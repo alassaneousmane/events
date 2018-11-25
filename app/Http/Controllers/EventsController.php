@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EventFormRequest;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
 
 class EventsController extends Controller
 {
@@ -29,7 +30,8 @@ class EventsController extends Controller
     public function create()
     {
         //
-        return view('events.create');
+        $event = new Event;
+        return view('events.create')->withEvent($event);
     }
 
     /**
@@ -41,9 +43,14 @@ class EventsController extends Controller
     public function store(EventFormRequest $request)
     {
         
-        Event::create([
+        $event = Event::create([
             'title' => $request->title,
             'description' => $request->description]);
+
+         flash(sprintf("Évènement / %s / créé avec succès", $event->title));
+
+        // Flashy::message('Évènement créé avec succès !');
+        // Alert::message('Robots are working!');
 
         return redirect()->route('home');
     }
@@ -84,8 +91,10 @@ class EventsController extends Controller
             $event->update([
             'title' => $request->title,
             'description' => $request->description
-        ]);
+            ]);
 
+            flash(sprintf("Évènement / %s / modifié avec succès", $event->title));
+           
         // return redirect()->route('events.show', $id); // Redirige l'utilisateur sur la page de l'event qui vient d'être modifier
         //Moi j'aimerais le rediriger sur la page d'accueil seulement
         return redirect()->route('home');
@@ -103,6 +112,8 @@ class EventsController extends Controller
         // Event::destroy($id); Implicit Route Model Binding
 
         $event->delete();
+
+       flash(sprintf("Évènement / %s /supprimé avec succès", $event->title), 'danger');
 
         return redirect()->route('home');
     }

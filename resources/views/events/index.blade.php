@@ -4,7 +4,12 @@
 @section('jumbotron')
 
 <section class="jumbotron container text-center">
-        
+
+      @if(Session::has('notification.message'))
+        <div class="alert alert-{{ Session::get('notification.type') }} alert-dismissible fade show" role="alert" style="margin-top: 20px">
+        {{ Session::get('notification.message') }}
+        </div>
+      @endif     
           <h1 class="jumbotron-heading">{{ $nombreEvenements->count() }} {{ str_plural('Évènements', $nombreEvenements->count()) }}</h1>
          @if(!$nombreEvenements->isEmpty())
       		<ul class="events">

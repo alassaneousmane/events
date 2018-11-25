@@ -5,7 +5,16 @@
 <br>
 <h1>Éditer l'évènement # {{ $event->id }} </h1>
 
-@include('layouts.partials._formEdit')
+<form action="{{ route('events.update', ['event' => $event->id]) }}" method="POST">
+	
+	{{ method_field('PUT') }}
+
+	{{ csrf_field() }}
+ 	
+ 	@include('layouts.partials._form', ['submitButtonText' => "Modifier l'évènement"])
+	
+	
+</form>
 
 <p><a href="{{ route('home') }}">Annuler</a></p>
 

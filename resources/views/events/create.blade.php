@@ -7,7 +7,16 @@
 
 <h1>Créer un nouvel évènement</h1>
 
-@include('layouts.partials._formCreate')
+
+
+<form action="{{ route('events.store') }}" method="POST">
+
+	{{ csrf_field() }}
+
+	@include('layouts.partials._form', ['submitButtonText' =>'Créer un évènement'])
+	
+	
+</form>
 
 <p><a href="{{ route('home') }}">Annuler</a></p>
 
