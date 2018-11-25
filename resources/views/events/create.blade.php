@@ -13,7 +13,7 @@
 
 	{{ csrf_field() }}
 
-	@include('layouts.partials._form', ['submitButtonText' =>'Créer un évènement'])
+	@include('layouts.partials._form', ['submitButtonText' =>'Créer cet évènement'])
 	
 	
 </form>
