@@ -117,4 +117,10 @@ class EventsController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function contact() {
+        $telephone = "07 68 24 73 64";
+        $email = "ousmanealassane.toure@gmail.com";
+        return view('events.contact')->withTelephone($telephone)->withEmail($email);
+    }
 }

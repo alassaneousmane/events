@@ -13,4 +13,6 @@
 
 Route::get('/', 'EventsController@index')->name('home');
 
+Route::get('/contactez-nous', 'EventsController@contact')->name('contact');
+
 Route::resource('events', 'EventsController');

@@ -7,3 +7,14 @@ ul.events li a {
 .inline-block {
 	display: inline-block;
 }
+
+.contact {
+	
+	text-decoration: none;
+	color: white;
+}
+.contact:hover {
+	
+	text-decoration: none;
+	color: white;
+}

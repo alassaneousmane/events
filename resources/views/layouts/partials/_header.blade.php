@@ -7,11 +7,11 @@
               <p class="text-muted">Outils de création | réservation d'évènements.</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Contact</h4>
+              <h4 class="text-white "><a href="{{ route('contact') }}" class="contact">Contact</a></h4><br>
               <ul class="list-unstyled">
                 <li>
                   <p class="navbar-btn">
-                  <a href="{{ route('events.create') }}" class="btn btn-primary" class="text-white"><i class="fa fa-plus"></i> Créer un évènement</a>            
+                  <a href="{{ route('events.create') }}" class="btn btn-primary" class="text-white"><i class="fa fa-plus"></i> Créer un évènement</a>          
                   </p>
                 </li>
                 <li>

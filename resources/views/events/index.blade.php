@@ -6,7 +6,7 @@
 <section class="jumbotron container text-center">
 
       @if(Session::has('notification.message'))
-        <div class="alert alert-{{ Session::get('notification.type') }} alert-dismissible fade show" role="alert" style="margin-top: -40px">
+        <div class="alert alert-{{ Session::get('notification.type') }} alert-dismissible fade show" role="alert" style="margin-top: -85px">
         {{ Session::get('notification.message') }}
         </div>
       @endif     
@@ -49,7 +49,6 @@
           </div>
             {{-- Paginator --}}
           {{ $events->links('vendor/pagination.bootstrap-4') }}
-        </div>
-     
+        </div>     
 
 @stop
