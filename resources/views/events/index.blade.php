@@ -6,7 +6,7 @@
 <section class="jumbotron container text-center">
 
       @if(Session::has('notification.message'))
-        <div class="alert alert-{{ Session::get('notification.type') }} alert-dismissible fade show" role="alert" style="margin-top: 20px">
+        <div class="alert alert-{{ Session::get('notification.type') }} alert-dismissible fade show" role="alert" style="margin-top: -40px">
         {{ Session::get('notification.message') }}
         </div>
       @endif     
