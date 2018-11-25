@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventFormRequest;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,10 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::paginate(2);
+        $nombreEvenements = Event::all();
 
-        return view('events.index')->withEvents($events);
+        return view('events.index')->withNombreEvenements($nombreEvenements)->withEvents($events);
     }
 
     /**
@@ -36,13 +38,9 @@ class EventsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventFormRequest $request)
     {
-        $this->validate($request, [
-            'title' => 'required|min:3',
-            'description' => 'required|min:5'
-        ]);
-
+        
         Event::create([
             'title' => $request->title,
             'description' => $request->description]);
@@ -56,9 +54,9 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Event $event)
     {
-        $event = Event::findOrFail($id);
+        // $event = Event::findOrFail($id); // Laravel nous fera cela avec l'implicit route model
 
         return view('events.show')->withEvent($event);
     }
@@ -69,10 +67,8 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $event)
     {
-        //
-        $event = Event::findOrFail($id);
         return view('events.edit')->withEvent($event);
     }
 
@@ -83,19 +79,16 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventFormRequest $request, Event $event)
     {
-        //
-        $this->validate($request, ['title' => 'required|min:3', 'description' => 'required|min:5']);
-
-        $event = Event::findOrFail($id);
-
-        $event->update([
+            $event->update([
             'title' => $request->title,
             'description' => $request->description
         ]);
 
-        return redirect()->route('events.show', $id);
+        // return redirect()->route('events.show', $id); // Redirige l'utilisateur sur la page de l'event qui vient d'être modifier
+        //Moi j'aimerais le rediriger sur la page d'accueil seulement
+        return redirect()->route('home');
     }
 
     /**
@@ -104,10 +97,12 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
-        //
-        Event::destroy($id);
+        // 
+        // Event::destroy($id); Implicit Route Model Binding
+
+        $event->delete();
 
         return redirect()->route('home');
     }

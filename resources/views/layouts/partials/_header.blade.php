@@ -14,7 +14,11 @@
                   <a href="{{ route('events.create') }}" class="btn btn-primary" class="text-white"><i class="fa fa-plus"></i> Créer un évènement</a>            
                   </p>
                 </li>
-                
+                <li>
+                  <p class="navbar-btn">
+                    <a href="{{ route('events.index') }}" class="btn btn-secondary my-2"><i class="fas fa-eye"></i> Voir la liste des évènements en cours</a>
+                  </p>
+                </li>
               </ul>
             </div>
           </div>

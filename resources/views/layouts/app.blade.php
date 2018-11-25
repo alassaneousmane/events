@@ -13,12 +13,12 @@
 </head>
 
 <body>
-	@include('layouts.partials._header');
+	@include('layouts.partials._header')
 	@include('layouts.partials._main')
 	<div class="container">
 	@yield('content')		
 	</div>
-	@include('layouts.partials._footer');
+	@include('layouts.partials._footer')
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
