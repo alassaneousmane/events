@@ -45,14 +45,16 @@ class EventsController extends Controller
         
         $event = Event::create([
             'title' => $request->title,
-            'description' => $request->description]);
+            'description' => $request->description
+        ]);
 
          flash(sprintf("Évènement / %s / créé avec succès", $event->title));
 
         // Flashy::message('Évènement créé avec succès !');
         // Alert::message('Robots are working!');
 
-        return redirect()->route('home');
+        // return redirect()->route('home');
+        return redirect()->home(); // Fonctionne quand la route s'appelle home uniquement
     }
 
     /**

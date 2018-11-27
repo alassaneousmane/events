@@ -15,7 +15,7 @@
       		<ul class="events">
       			@foreach($nombreEvenements as $nombreEvenement)
       			<li>
-      				<a href="{{ route('events.show', ['event' => $nombreEvenement->id ]) }}">{{ $nombreEvenement->title }}</a>
+      				<a href="{{ route('events.show', ['event' => $nombreEvenement]) }}">{{ $nombreEvenement->title }}</a>
       			</li>
       			@endforeach
       		</ul>     
@@ -37,8 +37,8 @@
                   <p class="card-text">{{ $event->description }}.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <a href="{{ route('events.show', ['event' => $event->id]) }}" class="btn btn-sm btn-outline-secondary">View</a>
-                      <a href="{{ route('events.edit', ['event' => $event->id]) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                      <a href="{{ route('events.show', ['event' => $event]) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                      <a href="{{ route('events.edit', ['event' => $event]) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
                     </div>
                     <small class="text-muted"> {{ (new \DateTime($event->updated_at))->format('d/m/Y H:i:s') }}</small>
                   </div>

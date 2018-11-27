@@ -3,9 +3,9 @@
 
 @section('content')
 <br>
-<h1>Éditer l'évènement # {{ $event->id }} </h1>
+<h1>Éditer l'évènement # {{ $event->title }} </h1>
 
-<form action="{{ route('events.update', ['event' => $event->id]) }}" method="POST">
+<form action="{{ route('events.update', ['event' => $event]) }}" method="POST">
 	
 	{{ method_field('PUT') }}
 
