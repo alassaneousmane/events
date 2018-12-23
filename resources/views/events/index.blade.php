@@ -10,7 +10,7 @@
         {{ Session::get('notification.message') }}
         </div>
       @endif     
-          <h1 class="jumbotron-heading">{{ $nombreEvenements->count() }} {{ str_plural('Évènements', $nombreEvenements->count()) }}</h1>
+          <h1 class="jumbotron-heading">{{ $nombreEvenements->count() }} {{ str_plural('Évènement', $nombreEvenements->count()) }}</h1>
          @if(!$nombreEvenements->isEmpty())
          <table class="table table-hover">
           <thead>
