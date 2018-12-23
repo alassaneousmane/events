@@ -12,14 +12,23 @@
       @endif     
           <h1 class="jumbotron-heading">{{ $nombreEvenements->count() }} {{ str_plural('Évènements', $nombreEvenements->count()) }}</h1>
          @if(!$nombreEvenements->isEmpty())
-      		<ul class="events">
-      			@foreach($nombreEvenements as $nombreEvenement)
-      			<li>
-      				<a href="{{ route('events.show', ['event' => $nombreEvenement]) }}">{{ $nombreEvenement->title }}</a>
-      			</li>
-      			@endforeach
-      		</ul>     
-
+         <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Titre de l'évènement</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+              @foreach($nombreEvenements as $event)
+              <tr>
+                  <td><a href="{{ route('events.show', ['event' => $event]) }}">{{ $event->title }}</a></td>
+                  <td>{{ $event->description }}</td>
+              </tr>  
+              @endforeach                      
+          </tbody>
+        </table>
+      	
     		@else
     		  <p class="alert alert-info">Aucun évènement pour le moment </p>
     		@endif
